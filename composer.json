@@ -1,0 +1,12 @@
+{
+    "name": "skeptycal/gpg_github",
+    "description": "gpg setup for github",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "skeptycal",
+            "email": "skeptycal@gmail.com"
+        }
+    ],
+    "require": {}
+}
