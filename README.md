@@ -1,4 +1,4 @@
-# pc version 0.8.1
+#  version
 
 ---
 
@@ -6,30 +6,36 @@
 
 .
 ├── README.md
+├── bak
+│   ├── README.bak.md
+│   ├── codecov.yml.bak
+│   └── pc.bak
 ├── codecov.yml
+├── composer.json
 ├── git_gpg.php
-└── git_gpg_github.php
+├── git_gpg_github.php
+└── pc
 
-0 directories, 4 files
+1 directory, 9 files
 
 ```
 
 ---
 
-## pre-commit repo automation for macOS
+##
 
 ```bash
 
 
 ###############################################################################
-# pc : pre-commit repo automation for macOS (version 0.8.1)
+#  :  (version )
 
 # author    - Michael Treanor  <skeptycal@gmail.com>
 # copyright - 2019 (c) Michael Treanor
 # license   - MIT <https://opensource.org/licenses/MIT>
 # github    - https://www.github.com/skeptycal
 
-# Usage: pc {init|reset|version|help}
+# Usage:  {init|reset|version|help}
 
 #   Parameters:
 #       init, -i, --init        -- install and initialize
