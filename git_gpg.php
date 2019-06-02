@@ -1,8 +1,6 @@
 #!/usr/bin/env php
 <?php
 /**
- * Git_gpg.php
- *
  * Use regex to extract gpg secret key from gpg function
  *   Caveat: this will select only the first matching key
  *
@@ -18,23 +16,36 @@
  * @author    Michael Treanor  <skeptycal@gmail.com>
  * @copyright 2018 (C) Michael Treanor
  * @license   GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
- * @version   1.1
+ * @version   Git <2.21>
  * @link      https://github.com/skeptycal
  */
 
-function func_get_gpg(){
+/**
+  * A summary informing the user what the associated element does.
+  *
+  * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
+  * and to provide some background information or textual references.
+  *
+  * @param string $myArgument With a *description* of this argument, these may also
+  *    span multiple lines.
+  *
+  * @return void
+  */
+
+function Func_Get_gpg()
+{
     $pattern = '/^.*sec.{3}rsa4096\/(\w{16}+)/im';
     $target = `gpg --list-secret-keys --keyid-format LONG`;
     $gpg_out = "";
-    preg_match_all( $pattern,$target,$gpg_out);
+    preg_match_all($pattern, $target, $gpg_out);
     return implode("", $gpg_out[1]);
-    }
+}
 
 // $gpg_code = func_get_gpg();
 
 // If CLI echo $gpg_code
 if (php_sapi_name() == 'cli-server') {
-	echo func_get_gpg();
+    echo func_get_gpg();
     return true; // exit with resource unchanged.
 }
 
@@ -51,8 +62,10 @@ if (php_sapi_name() == 'cli-server') {
  */
 
 /* Changelog:
- * 1.1 Refactored and created a function that returns the value instead of a local string.
- *     Added CLI codeblock to echo value if run from command line
+ * 1.1 Refactored and created a function that returns the value
+ * instead of a local string. Added CLI codeblock to echo value
+ * if run from command line
  *
- * 1.0 Creates a variable that contains the extracted gpg private code from the local key.
+ * 1.0 Creates a variable that contains the extracted gpg private
+ * code from the local key.
  */
