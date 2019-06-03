@@ -1,51 +1,47 @@
 #!/usr/bin/env php
 <?php
 /**
- * Use regex to extract gpg secret key from gpg function
- *   Caveat: this will select only the first matching key
+ * Returns the gpg secret key ready for commit signing with Git.
+ *
+ * Returns a string containing from field 1 of the gpg_out array. This contains
+ * the gpg secret key ready for commit signing with Git. Uses a function using
+ * regex. This will select only the first matching key.
  *
  * PHP version 7.3.1 (cli) (built: Jan 10 2019 13:15:37)
- *
- * gpg (GnuPG) 2.2.12
+ * Tested with macOS 10.14.5 and gpg (GnuPG) 2.2.12
  * libgcrypt 1.8.4
  * License GPLv3+: GNU GPL version 3 or later
  * <https://gnu.org/licenses/gpl.html>
  * This is free software: you are free to change and redistribute it.
  * There is NO WARRANTY, to the extent permitted by law.
  *
+ * @package   CLI_Utilities
  * @author    Michael Treanor  <skeptycal@gmail.com>
  * @copyright 2018 (C) Michael Treanor
  * @license   GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
- * @version   Git <2.21>
+ * @version   GIT: https://www.github.com/skeptycal/git_gpg
  * @link      https://github.com/skeptycal
+ * @return    $gpg_out[1] - string
  */
 
 /**
-  * A summary informing the user what the associated element does.
-  *
-  * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element
-  * and to provide some background information or textual references.
-  *
-  * @param string $myArgument With a *description* of this argument, these may also
-  *    span multiple lines.
-  *
-  * @return void
-  */
-
-function Func_Get_gpg()
+ * Returns the gpg secret key for the current user.
+ *
+ * @return string
+ */
+function funcGetGpg()
 {
-    $pattern = '/^.*sec.{3}rsa4096\/(\w{16}+)/im';
-    $target = `gpg --list-secret-keys --keyid-format LONG`;
-    $gpg_out = "";
-    preg_match_all($pattern, $target, $gpg_out);
-    return implode("", $gpg_out[1]);
+    preg_match_all(
+        '/^.*sec.{3}rsa4096\/(\w{16}+)/im',
+        `gpg --list-secret-keys --keyid-format LONG`,
+        $gpg_out
+    );
+    return implode('', $gpg_out[1]);
 }
 
-// $gpg_code = func_get_gpg();
-
-// If CLI echo $gpg_code
-if (php_sapi_name() == 'cli-server') {
-    echo func_get_gpg();
+if (strpos(php_sapi_name(), 'cli') !== false) {
+    echo "\n\e[0;34m > GPG Secret (Do Not Share This!!): \e[0m";
+    echo funcGetGpg(), "\n\n";
     return true; // exit with resource unchanged.
 }
 
@@ -58,7 +54,7 @@ if (php_sapi_name() == 'cli-server') {
  *
  * This works with 4096 keys:
  *   if you wish to use it with other keys,
- *   replace 'rsa4096' in $patterh with the appropriate number
+ *   replace 'rsa4096' in $pattern with the appropriate number
  */
 
 /* Changelog:
