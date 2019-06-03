@@ -20,7 +20,7 @@
  * @version   1.1
  * @link      https://github.com/Skeptycal
  */
-#!/usr/bin/env php
+// !/usr/bin/env php
 
 /*
  * @author    Michael Treanor  <skeptycal@gmail.com>
