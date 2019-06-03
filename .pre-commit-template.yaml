@@ -37,11 +37,11 @@
 #   commit file will be overwritten when updating.
 ###############################################################################
 
-
-# Sample yaml template ########################################################
-default_language_version:
-    python: python3.7
-default_stages: [commit, push]
+# # Sample yaml template ########################################################
+# default_language_version:
+#     python: python3.7
+# default_stages: [commit, push]
+default_stages: [push]
 exclude: '^$'
 fail_fast: false
 repos:
@@ -56,14 +56,22 @@ repos:
     -   id: check-merge-conflict
     -   id: check-symlinks
     -   id: check-yaml
+        files: \.(yaml|yml)$
 #   -   id: detect-aws-credentials
     -   id: detect-private-key
     -   id: end-of-file-fixer
-    -   id: flake8
     -   id: pretty-format-json
     -   id: requirements-txt-fixer
     -   id: trailing-whitespace
--   repo: git://github.com/pre-commit/mirrors-pylint
+
+  - repo: git@github.com:hootsuite/pre-commit-php.git
     sha: master
     hooks:
-    -   id: pylint
+    - id: php-lint
+    - id: php-unit
+    - id: php-cs
+      files: \.(php)$
+      args: [--standard=PSR2 -p]
+    - id: php-cbf
+      files: \.(php)$
+      args: [--standard=PSR2 -p]
