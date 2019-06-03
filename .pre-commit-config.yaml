@@ -46,7 +46,7 @@ exclude: '^$'
 fail_fast: false
 repos:
 -   repo: git@github.com:hootsuite/pre-commit-php.git
-    rev: master
+    sha: master
     hooks:
     -   id: php-lint
     -   id: php-unit
@@ -59,7 +59,7 @@ repos:
 #         entry: bin/git/version-update.sh
 #         files: \.sh$
 -   repo: git://github.com/pre-commit/pre-commit-hooks
-    rev: v2.2.3
+    sha: master
     hooks:
     -   id: check-added-large-files
     -   id: check-byte-order-marker

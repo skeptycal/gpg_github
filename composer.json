@@ -1,6 +1,17 @@
 {
     "name": "skeptycal/gpg_github",
-    "description": "gpg setup for github",
+    "description": "Returns the gpg secret key ready for commit signing with Git.",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4",
+        "phpunit/phpunit": "^8.1",
+        "facebook/webdriver": "^1.6",
+        "phpunit/phpunit-selenium": "^4.1",
+        "se/selenium-server-standalone": "^3.12",
+        "tracy/tracy": "^2.6",
+        "jokkedk/webgrind": "^1.5",
+        "maximebf/debugbar": "^1.15",
+        "phpdocumentor/phpdocumentor": "^2.9"
+    },
     "license": "MIT",
     "authors": [
         {
