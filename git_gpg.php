@@ -3,15 +3,19 @@
 /**
  * Returns the gpg secret key ready for commit signing with Git.
  *
- * Returns a string containing from field 1 of the gpg_out array. This contains
- * the gpg secret key ready for commit signing with Git. Uses a function using
- * regex. This will select only the first matching key.
+ * This contains the gpg secret key ready for commit signing with Git. Uses a
+ * regex based function to extract the gpg secret key. This will select only
+ * the first matching key.
  *
- * PHP version 7.3.1 (cli) (built: Jan 10 2019 13:15:37)
- * Tested with macOS 10.14.5 and gpg (GnuPG) 2.2.12
- * libgcrypt 1.8.4
+ * Tested with:
+ *      - PHP version 7.3.5 (cli)
+ *      - gpg (GnuPG) 2.2.15
+ *      - libgcrypt 1.8.4
+ *      - macOS 10.14.5
+ *
+ * GPG is licensed under GPLv3+
  * License GPLv3+: GNU GPL version 3 or later
- * <https://gnu.org/licenses/gpl.html>
+ * https://www.gnu.org/licenses/gpl-3.0.html
  * This is free software: you are free to change and redistribute it.
  * There is NO WARRANTY, to the extent permitted by law.
  *
@@ -29,6 +33,9 @@
  *
  * @return string
  */
+
+// require_once 'get_opt_req.php';
+
 function funcGetGpg()
 {
     preg_match_all(
@@ -40,12 +47,20 @@ function funcGetGpg()
 }
 
 if (strpos(php_sapi_name(), 'cli') !== false) {
-    echo "\n\e[0;34m > GPG Secret (Do Not Share This!!): \e[0m";
+    // loop through each element in the $argv array
+    foreach ($argv as $value) {
+        echo "$value\n";
+    }
+
+    // CLI output with warning
+    echo "\n\e[0;31m > GPG Secret (Do Not Share This!!): \e[0m";
     echo funcGetGpg(), "\n\n";
     return true; // exit with resource unchanged.
 }
 
 /*
+ * References:
+ * ***************************************************************************
  * Based on GitHub instructions "Telling Git about your signing key"
  * https://help.github.com/articles/telling-git-about-your-signing-key/
  *
@@ -57,7 +72,13 @@ if (strpos(php_sapi_name(), 'cli') !== false) {
  *   replace 'rsa4096' in $pattern with the appropriate number
  */
 
-/* Changelog:
+/*
+ * Changelog:
+ * ***************************************************************************
+ * 1.3 Formatting (pass phpcs and phpcbf with php-cs-fixer)
+ *
+ * 1.2 Add color CLI message with warning
+ *
  * 1.1 Refactored and created a function that returns the value
  * instead of a local string. Added CLI codeblock to echo value
  * if run from command line
