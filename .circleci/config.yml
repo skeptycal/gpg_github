@@ -1,0 +1,8 @@
+# ~/.circleci/config.yml
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/php:7.3
+    parallelism: 4
+
