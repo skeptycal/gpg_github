@@ -33,9 +33,6 @@
  *
  * @return string
  */
-
-// require_once 'get_opt_req.php';
-
 function funcGetGpg()
 {
     preg_match_all(
