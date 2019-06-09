@@ -8,8 +8,8 @@ language: php
 # Versions of PHP you want your project run with.
 php:
   # - '5.4'
-  - 5.6
-  - 7.0
+  # - 5.6
+  # - 7.0
   - 7.3
   - 7.4snapshot
   - hhvm # on Trusty only
@@ -66,6 +66,14 @@ script:
 after_success:
   # Upload coverage data to codecov
   - codecov
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
 
 # After a build, send email notification with the build results
 notifications:

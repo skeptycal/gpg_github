@@ -45,6 +45,7 @@ function funcGetGpg()
 
 if (strpos(php_sapi_name(), 'cli') !== false) {
     // loop through each element in the $argv array
+    // dummy code ... really
     foreach ($argv as $value) {
         echo "$value\n";
     }
