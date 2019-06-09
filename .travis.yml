@@ -55,7 +55,7 @@ install:
 # Commands you want to run that will verify your build.
 script:
   - ./vendor/bin/phpunit --configuration phpunit.xml.dist
-  - ./vendor/bin/phpcs --standard=phpcs.xml  src/
+  - ./vendor/bin/phpcs --standard=PSR2  src/
 
 after_success:
   # Upload coverage data to codecov
