@@ -6,7 +6,7 @@ spl_autoload_register(
     function($class) {
         static $classes = null;
         if ($classes === null) {
-            $classes = array(
+            $classes = [
                 'barbuccommand' => '/../vendor/symfony/console/Tests/Fixtures/BarBucCommand.php',
                 'foo1command' => '/../vendor/symfony/console/Tests/Fixtures/Foo1Command.php',
                 'foo2command' => '/../vendor/symfony/console/Tests/Fixtures/Foo2Command.php',
@@ -446,7 +446,7 @@ spl_autoload_register(
                 'testcommand' => '/../vendor/symfony/console/Tests/Fixtures/TestCommand.php',
                 'testtiti' => '/../vendor/symfony/console/Tests/Fixtures/TestTiti.php',
                 'testtoto' => '/../vendor/symfony/console/Tests/Fixtures/TestToto.php'
-            );
+            ];
         }
         $cn = strtolower($class);
         if (isset($classes[$cn])) {
