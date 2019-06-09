@@ -11,5 +11,7 @@
         "name": "skeptycal",
         "email": "skeptycal@gmail.com"
     }],
-    "require": {}
+    "require": {
+        "php-coveralls/php-coveralls": "^2.1"
+    }
 }
