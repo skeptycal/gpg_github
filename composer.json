@@ -1,17 +1,19 @@
 {
-    "name": "skeptycal/gpg_github",
-    "description": "Returns the gpg secret key ready for commit signing with Git.",
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.4",
-        "phpunit/phpunit": "^8.1",
-        "phpdocumentor/phpdocumentor": "^2.9"
-    },
-    "license": "MIT",
-    "authors": [{
-        "name": "skeptycal",
-        "email": "skeptycal@gmail.com"
-    }],
-    "require": {
-        "php-coveralls/php-coveralls": "^2.1"
+  "name": "skeptycal/gpg_github",
+  "description": "Returns the gpg secret key ready for commit signing with Git.",
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.4",
+    "phpunit/phpunit": "^8.1",
+    "phpdocumentor/phpdocumentor": "^2.9"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "skeptycal",
+      "email": "skeptycal@gmail.com"
     }
+  ],
+  "require": {
+    "php-coveralls/php-coveralls": "^2.1"
+  }
 }
