@@ -5,7 +5,6 @@ dist: trusty
 sudo: false
 language: php
 php:
-
   - 7.3
   - 7.4snapshot
   - hhvm # on Trusty only
@@ -23,15 +22,15 @@ env:
 
 matrix:
   allow_failures:
-  - php:
-    - hhvm
-    - 7.4snapshot
+    - php:
+        - hhvm
+        - 7.4snapshot
   fast_finish: false
 
 # Cache composer packages so "composer install" is faster
 cache:
   directories:
-  - $HOME/.composer/cache/files
+    - $HOME/.composer/cache/files
 
 # Commands to be run before your environment runs.
 # Please note that if you want to run PHPUnit on HHVM, you have to explicitly install version 5.7 in your .travis.yml due to a compatibility issue between HHVM and PHP7.
@@ -64,7 +63,7 @@ after_success:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   on:
     branch: master
