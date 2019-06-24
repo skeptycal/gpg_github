@@ -24,7 +24,6 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
-
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
@@ -40,9 +39,9 @@ install:
 # fast_finish: If your build fails do not continue trying to build, just stop.
 matrix:
   allow_failures:
-  - php:
-    - hhvm
-    - 7.4snapshot
+    - php:
+        - hhvm
+        - 7.4snapshot
   fast_finish: false
 
 # Start mysql service
@@ -57,7 +56,7 @@ env:
 # Cache composer packages so "composer install" is faster
 cache:
   directories:
-  - $HOME/.composer/cache/files
+    - $HOME/.composer/cache/files
 
 # Commands you want to run that will verify your build.
 script:
@@ -70,7 +69,7 @@ after_success:
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   on:
     branch: master
