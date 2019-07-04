@@ -5,9 +5,9 @@ dist: trusty
 sudo: false
 language: php
 php:
-  - 7.3
-  - 7.4snapshot
-  - hhvm # on Trusty only
+  - '7.3'
+  # - 7.4snapshot
+  # - hhvm # on Trusty only
   # - nightly
   # - hhvm-nightly
 
@@ -15,16 +15,17 @@ php:
 # services:
 #   - mysql
 
-env:
-  - DB=sqlite
+# env:
+  # - DB=sqlite
   # - DB=mysql
   # - DB=pgsql
 
 matrix:
   allow_failures:
     - php:
-        - hhvm
-        - 7.4snapshot
+        - '7.3'
+        # - hhvm
+        # - 7.4snapshot
   fast_finish: false
 
 # Cache composer packages so "composer install" is faster
@@ -66,16 +67,16 @@ deploy:
   github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   on:
-    branch: master
+    branch: dev-ci
 
-# After a build, send email notification with the build results
-notifications:
-  on_success: never
-  on_failure: always
-  # irc:
-  #   channels: "irc.freenode.org#xxxxx"
-  #   template:
-  #     - "%{repository_name}@%{branch}: %{message} (%{build_url})"
-  #   on_success: change
-  #   on_failure: change
-  email: skeptycal@gmail.com
+# # After a build, send email notification with the build results
+# notifications:
+#   on_success: never
+#   on_failure: always
+#   # irc:
+#   #   channels: "irc.freenode.org#xxxxx"
+#   #   template:
+#   #     - "%{repository_name}@%{branch}: %{message} (%{build_url})"
+#   #   on_success: change
+#   #   on_failure: change
+#   email: skeptycal@gmail.com

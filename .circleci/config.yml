@@ -6,8 +6,8 @@ jobs:
     docker:
       - image: php:7.1-apache
     parallelism: 4
-        environment:
-          APP_ENV: test
+      # environment:
+      #   APP_ENV: test
     steps:
       - run:
           name: Install system packages
