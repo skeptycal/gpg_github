@@ -1,8 +1,6 @@
 # Sample yaml template ########################################################
 default_language_version: system
-#     python: python3.7
 default_stages: [commit, push]
-# default_stages: [push]
 exclude: "^$"
 fail_fast: false
 repos:
@@ -12,13 +10,6 @@ repos:
       - id: php-lint
       - id: php-unit
       - id: php-cs-fixer
-  # -   repo: local
-  #     hooks:
-  #     -   id: version-update
-  #         name: Version autoupdate
-  #         language: script
-  #         entry: bin/git/version-update.sh
-  #         files: \.sh$
   - repo: git://github.com/pre-commit/pre-commit-hooks
     sha: master
     hooks:
@@ -30,9 +21,6 @@ repos:
       - id: check-xml
       - id: check-merge-conflict
       - id: check-symlinks
-      # -   id: check-yaml
-      #     files: \.(yaml|yml)$
-      #   -   id: detect-aws-credentials
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: pretty-format-json

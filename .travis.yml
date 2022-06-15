@@ -6,26 +6,11 @@ sudo: false
 language: php
 php:
   - '7.3'
-  # - 7.4snapshot
-  # - hhvm # on Trusty only
-  # - nightly
-  # - hhvm-nightly
-
-# Start mysql service
-# services:
-#   - mysql
-
-# env:
-  # - DB=sqlite
-  # - DB=mysql
-  # - DB=pgsql
 
 matrix:
   allow_failures:
     - php:
         - '7.3'
-        # - hhvm
-        # - 7.4snapshot
   fast_finish: false
 
 # Cache composer packages so "composer install" is faster
@@ -33,8 +18,6 @@ cache:
   directories:
     - $HOME/.composer/cache/files
 
-# Commands to be run before your environment runs.
-# Please note that if you want to run PHPUnit on HHVM, you have to explicitly install version 5.7 in your .travis.yml due to a compatibility issue between HHVM and PHP7.
 before_script:
   - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - curl -sSfL -o ~/.phpenv/versions/hhvm/bin/phpunit https://phar.phpunit.de/phpunit-5.7.phar
@@ -42,20 +25,13 @@ before_script:
   - composer install --prefer-source --no-interaction --dev
 
 # Install composer dependencies,
-# Create database, schema and fixtures
 install:
   - rm composer.lock
   - travis_retry composer update --prefer-dist
-  # - composer install
-  # - cp app/config/parameters.yml.dist app/config/parameters.yml
-  # - php bin/console doctrine:database:create --env=test
-  # - php bin/console doctrine:schema:create --env=test
-  # - php bin/console doctrine:fixtures:load -n --env=test
 
 # Commands you want to run that will verify your build.
 script:
   - ./vendor/bin/phpunit --configuration phpunit.xml.dist
-  # - ./vendor/bin/phpcs --standard=PSR2  src/
 
 after_success:
   # Upload coverage data to codecov
@@ -64,19 +40,6 @@ after_success:
 deploy:
   provider: pages
   skip_cleanup: true
-  # github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
   keep_history: true
   on:
     branch: dev-ci
-
-# # After a build, send email notification with the build results
-# notifications:
-#   on_success: never
-#   on_failure: always
-#   # irc:
-#   #   channels: "irc.freenode.org#xxxxx"
-#   #   template:
-#   #     - "%{repository_name}@%{branch}: %{message} (%{build_url})"
-#   #   on_success: change
-#   #   on_failure: change
-#   email: skeptycal@gmail.com
